@@ -1,7 +1,7 @@
 import React from "react";
-import { Text, View, StyleSheet, TouchableOpacity, TextInput, Button } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 
-class Login extends React.Component {
+class Camera extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -15,7 +15,7 @@ class Login extends React.Component {
     render() {
         return (
             <TouchableOpacity style={loginStyles.mainView} onPress={() => { this.onLogin() }}>
-                <Text>Login Page</Text>
+                <Text>Camera Page</Text>
             </TouchableOpacity>
         )
     }
@@ -31,4 +31,4 @@ const loginStyles = StyleSheet.create({
     }
 })
 
-export default Login;
+export default Camera;
