@@ -6,6 +6,7 @@ class Post extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            likes: Math.floor(Math.random() * 12000),
             liked: false,
             screenWidth: 0,
             screenWidth: 0,
@@ -20,9 +21,18 @@ class Post extends Component {
     }
 
     likeToggled = () => {
-        this.setState({
-            liked: !this.state.liked
-        })
+        if (this.state.liked == true) {
+            this.setState({
+                liked: false,
+                likes: Number(this.state.likes) - 1
+            })
+        }
+        if (this.state.liked == false) {
+            this.setState({
+                liked: true,
+                likes: Number(this.state.likes) + 1
+            })
+        }
     }
 
     render() {
@@ -52,13 +62,13 @@ class Post extends Component {
                     />
                 </TouchableOpacity>
                 <View style={postStyles.iconBar}>
-                    <Image style={{ height: 40, width: 40, marginLeft: 10, tintColor: heartIconColor }} source={config.images.heartIcon} />
+                    <TouchableOpacity onPress={this.likeToggled} ><Image style={{ height: 40, width: 40, marginLeft: 10, tintColor: heartIconColor }} source={config.images.heartIcon} /></TouchableOpacity>
                     <Image style={{ height: 35, width: 35, marginLeft: 10 }} source={config.images.chatIcon} />
                     <Image style={{ height: 35, width: 35, marginLeft: 10 }} source={config.images.downloadIcon} />
                 </View>
                 <View style={postStyles.commentBar}>
                     <Image source={config.images.heartIcon} style={{ height: 25, width: 25, marginLeft: 10 }} />
-                    <Text style={{ marginLeft: 10, fontWeight: "900" }}>12,384 Likes</Text>
+                    <Text style={{ marginLeft: 10, fontWeight: "900" }}>{this.state.likes}</Text>
                 </View>
             </View>
         )

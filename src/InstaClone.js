@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from "react-native";
-import { MainFeed, Login, Camera, Profile } from './components/screens';
+import { MainFeed, Login, Camera, Profile, Register } from './components/screens';
 import { createSwitchNavigator, createStackNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation';
 
 const Tabs = createBottomTabNavigator({
@@ -10,16 +10,32 @@ const Tabs = createBottomTabNavigator({
 }, {
         tabBarOptions: {
             activeBackgroundColor: '#e91e63',
+            activeTintColor: '#ffffff',
+            labelStyle: {
+                fontSize: 15,
+                textAlign: 'center',
+            },
+            tabStyle: {
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingBottom: 15
+            }
         }
     }
 )
 
-const MainStack = createSwitchNavigator({
+
+const IntroStack = createStackNavigator({
     login: Login,
+    register: Register
+})
+
+const MainStack = createSwitchNavigator({
+    login: IntroStack,
     main: Tabs
 });
 
-const AppContainer = createAppContainer(MainStack);
+const AppContainer = createAppContainer(MainStack)
 
 class InstaClone extends Component {
     render() {
