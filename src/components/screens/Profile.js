@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
 
 class Profile extends React.Component {
     constructor(props) {
@@ -12,6 +12,11 @@ class Profile extends React.Component {
     onLogin = () => {
         this.props.navigation.navigate("main")
     }
+
+    static navigationOptions = {
+        title: 'Profile',
+    };
+
     render() {
         return (
             <TouchableOpacity style={loginStyles.mainView} onPress={() => { this.onLogin() }}>

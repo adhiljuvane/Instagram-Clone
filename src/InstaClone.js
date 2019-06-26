@@ -1,12 +1,43 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Image } from "react-native";
 import { MainFeed, Login, Camera, Profile, Register } from './components/screens';
 import { createSwitchNavigator, createStackNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation';
+import { Icon } from 'native-base';
+import config from './config';
+
+
+const feedStackNavigator = createStackNavigator({
+    Activity: {
+        screen: MainFeed,
+        navigationOptions: {
+            headerLeft: <Icon name="camera" style={{ paddingLeft: 10, }} />,
+            headerTitle: "Instagram",
+            headerTitleStyle: {
+                fontWeight: 'normal',
+            },
+            headerRight: <Icon ios="ios-send-outline" android="md-chatboxes" style={{ paddingRight: 10, }} />
+        }
+    }
+})
+
+const profileStackNavigator = createStackNavigator({
+    Activity: {
+        screen: Profile,
+        navigationOptions: {
+            headerLeft: <Icon ios="ios-camera-outline" android="md-camera" style={{ paddingLeft: 10, }} />,
+            headerTitle: "Instagram",
+            headerTitleStyle: {
+                fontWeight: 'normal',
+            },
+            headerRight: <Icon ios="ios-send-outline" android="md-chatboxes" style={{ paddingRight: 10, }} />
+        }
+    }
+})
 
 const Tabs = createBottomTabNavigator({
-    feed: MainFeed,
+    feed: feedStackNavigator,
     camera: Camera,
-    profile: Profile
+    profile: profileStackNavigator
 }, {
         tabBarOptions: {
             activeBackgroundColor: '#e91e63',
@@ -23,7 +54,6 @@ const Tabs = createBottomTabNavigator({
         }
     }
 )
-
 
 const IntroStack = createStackNavigator({
     login: Login,

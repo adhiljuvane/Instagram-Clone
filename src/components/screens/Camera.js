@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
+import config from "../../config";
 
 class Camera extends React.Component {
     constructor(props) {
@@ -8,6 +9,11 @@ class Camera extends React.Component {
 
         }
     }
+
+    static navigationOptions = {
+        title: 'Camera',
+        header: null,
+    };
 
     onLogin = () => {
         this.props.navigation.navigate("main")
