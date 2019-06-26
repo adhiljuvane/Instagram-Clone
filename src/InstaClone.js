@@ -4,6 +4,7 @@ import { MainFeed, Login, Camera, Profile, Register } from './components/screens
 import { createSwitchNavigator, createStackNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation';
 import { Icon } from 'native-base';
 import config from './config';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const feedStackNavigator = createStackNavigator({
@@ -30,11 +31,15 @@ const feedStackNavigator = createStackNavigator({
     }
 })
 
+onCamera = () => {
+    this.props.navigation.navigate("Camera")
+}
+
 const profileStackNavigator = createStackNavigator({
     Activity: {
         screen: Profile,
         navigationOptions: {
-            headerLeft: <Icon ios="ios-camera-outline" android="md-camera" style={{ paddingLeft: 10, }} />,
+            headerLeft: <TouchableOpacity onPress={onCamera}><Icon ios="ios-camera-outline" android="md-camera" style={{ paddingLeft: 10, }} /></TouchableOpacity>,
             headerTitle: "Instagram",
             headerTitleStyle: {
                 fontWeight: 'normal',
