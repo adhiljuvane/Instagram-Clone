@@ -10,6 +10,16 @@ const feedStackNavigator = createStackNavigator({
     Activity: {
         screen: MainFeed,
         navigationOptions: {
+            tabBarIcon: ({ tintColor }) => (
+                <Icon name="ios-home" style={{
+                    color: tintColor, alignItems: 'center',
+                    alignSelf: 'center',
+                    height: '100%',
+                    justifyContent: 'center',
+                    position: 'absolute',
+                    width: '100%',
+                }} />
+            ),
             headerLeft: <Icon name="camera" style={{ paddingLeft: 10, }} />,
             headerTitle: "Instagram",
             headerTitleStyle: {
@@ -35,22 +45,37 @@ const profileStackNavigator = createStackNavigator({
 })
 
 const Tabs = createBottomTabNavigator({
-    feed: feedStackNavigator,
-    camera: Camera,
-    profile: profileStackNavigator
+    Home: feedStackNavigator,
+    Camera: Camera,
+    Profile: profileStackNavigator
 }, {
+        defaultNavigationOptions: ({ navigation }) => ({
+            tabBarIcon: ({ focused }) => {
+                const { routeName } = navigation.state;
+                let iconName;
+                switch (routeName) {
+                    case 'Home':
+                        iconName = 'ios-home';
+                        break;
+                    case 'Camera':
+                        iconName = 'ios-camera';
+                        break;
+                    default:
+                        iconName = 'ios-heart';
+                        break;
+                }
+                return (
+                    <Icon
+                        size={22}
+                        name={iconName}
+                        style={{ color: focused ? "white" : "black" }}
+                    />
+                );
+            },
+        }),
         tabBarOptions: {
             activeBackgroundColor: '#e91e63',
             activeTintColor: '#ffffff',
-            labelStyle: {
-                fontSize: 15,
-                textAlign: 'center',
-            },
-            tabStyle: {
-                alignItems: 'center',
-                justifyContent: 'center',
-                paddingBottom: 15
-            }
         }
     }
 )
