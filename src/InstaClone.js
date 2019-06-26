@@ -4,54 +4,53 @@ import { MainFeed, Login, Camera, Profile, Register } from './components/screens
 import { createSwitchNavigator, createStackNavigator, createAppContainer, createBottomTabNavigator } from 'react-navigation';
 import { Icon } from 'native-base';
 import config from './config';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const feedStackNavigator = createStackNavigator({
     Activity: {
         screen: MainFeed,
         navigationOptions: {
-            tabBarIcon: ({ tintColor }) => (
-                <Icon name="ios-home" style={{
-                    color: tintColor, alignItems: 'center',
-                    alignSelf: 'center',
-                    height: '100%',
-                    justifyContent: 'center',
-                    position: 'absolute',
-                    width: '100%',
-                }} />
-            ),
-            headerLeft: <Icon name="camera" style={{ paddingLeft: 10, }} />,
+            headerLeft: <Icon name="camera" style={{ paddingLeft: 10, color: '#d1cece' }} />,
             headerTitle: "Instagram",
             headerTitleStyle: {
                 fontWeight: 'normal',
             },
-            headerRight: <Icon ios="ios-send-outline" android="md-chatboxes" style={{ paddingRight: 10, }} />
+            headerRight: <Icon ios="ios-send-outline" android="md-chatboxes" style={{ paddingRight: 10, color: '#d1cece' }} />
         }
     }
 })
 
-onCamera = () => {
-    this.props.navigation.navigate("Camera")
-}
+const cameraStackNavigator = createStackNavigator({
+    Activity: {
+        screen: Camera,
+        navigationOptions: {
+            headerLeft: <Icon name="camera" style={{ paddingLeft: 10, color: '#d1cece' }} />,
+            headerTitle: "Instagram",
+            headerTitleStyle: {
+                fontWeight: 'normal',
+            },
+            headerRight: <Icon ios="ios-send-outline" android="md-chatboxes" style={{ paddingRight: 10, color: '#d1cece' }} />
+        }
+    }
+})
 
 const profileStackNavigator = createStackNavigator({
     Activity: {
         screen: Profile,
         navigationOptions: {
-            headerLeft: <TouchableOpacity onPress={onCamera}><Icon ios="ios-camera-outline" android="md-camera" style={{ paddingLeft: 10, }} /></TouchableOpacity>,
+            headerLeft: <Icon ios="ios-camera-outline" android="md-camera" style={{ paddingLeft: 10, color: '#d1cece' }} />,
             headerTitle: "Instagram",
             headerTitleStyle: {
                 fontWeight: 'normal',
             },
-            headerRight: <Icon ios="ios-send-outline" android="md-chatboxes" style={{ paddingRight: 10, }} />
+            headerRight: <Icon ios="ios-send-outline" android="md-chatboxes" style={{ paddingRight: 10, color: '#d1cece' }} />
         }
     }
 })
 
 const Tabs = createBottomTabNavigator({
     Home: feedStackNavigator,
-    Camera: Camera,
+    Camera: cameraStackNavigator,
     Profile: profileStackNavigator
 }, {
         defaultNavigationOptions: ({ navigation }) => ({
@@ -73,14 +72,16 @@ const Tabs = createBottomTabNavigator({
                     <Icon
                         size={22}
                         name={iconName}
-                        style={{ color: focused ? "white" : "black" }}
+                        style={{ color: focused ? "#000" : "#d1cece" }}
                     />
                 );
             },
         }),
         tabBarOptions: {
-            activeBackgroundColor: '#e91e63',
-            activeTintColor: '#ffffff',
+            activeTintColor: '#000000',
+            inactiveTintColor: '#d1cece',
+            showIcon: true,
+            showLabel: false
         }
     }
 )
