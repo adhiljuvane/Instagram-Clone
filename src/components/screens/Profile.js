@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet, TouchableOpacity, Image, Dimensions } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity, Image, Dimensions, ScrollView } from "react-native";
 import { Button, Icon } from 'native-base';
 
 var width = Dimensions.get('window').width;
@@ -46,6 +46,19 @@ class Profile extends React.Component {
                 <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
                     {this.renderSectionOne()}
                 </View>
+            )
+        }
+        if (this.state.activeIndex == 1) {
+            return (
+                <ScrollView style={{ flexDirection: 'column', paddingHorizontal: 5 }}>
+                    {images.map((image, index) => {
+                        return (
+                            <View key={index} style={[{ width: (width) }, { marginBottom: 2 }]}>
+                                <Image source={image} style={{ width: (width), height: 412 }} />
+                            </View>
+                        )
+                    })}
+                </ScrollView>
             )
         }
     }
