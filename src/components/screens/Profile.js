@@ -9,7 +9,8 @@ var images = [
     require('../../../assets/img3.jpg'),
     require('../../../assets/img4.jpg'),
     require('../../../assets/img5.jpg'),
-    require('../../../assets/img6.jpg')
+    require('../../../assets/img6.jpg'),
+    { uri: "file:///storage/emulated/0/Pictures/1561753961796.jpg" }
 ]
 
 class Profile extends React.Component {
