@@ -83,12 +83,20 @@ class Camera extends React.Component {
 
     onBottomButtonPressed(event) {
         const captureImages = JSON.stringify(event.captureImages);
-        Alert.alert(
-            event.type,
-            captureImages,
-            [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
-            { cancelable: false }
-        );
+        if (event.type === 'left') {
+            this.props.navigation.navigate("Profile")
+        } else if (event.type === 'capture') {
+            //store image from local storage to firebase.
+            Alert.alert(
+                event.type,
+                captureImages,
+                [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+                { cancelable: false }
+            );
+        }
+        else {
+            this.props.navigation.navigate("Profile")
+        }
     }
 
     static navigationOptions = {
